@@ -43,4 +43,3 @@ def daily_min(data):
     @return: minimum value - float
     """
     return np.min(data, axis=0)
-
