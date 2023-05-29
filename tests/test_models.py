@@ -34,7 +34,7 @@ def test_daily_max(test, expected):
     [
         ([[0, 2, 1], [2, 3, 3], [9, 5, 4]], [0, 2, 1]),
         ([[1, 2, -3], [3, 4, -9], [5, 6, -1]], [1, 2, -9]),
-])
+    ])
 def test_daily_min(test, expected):
     """Test that min function works for an array of zeros and  integers."""
     # Need to use Numpy testing functions to compare arrays
@@ -50,6 +50,32 @@ def test_daily_min_integers():
 
     # Need to use Numpy testing functions to compare arrays
     npt.assert_array_equal(daily_min(test_input), test_result)
+
+
+@pytest.mark.parametrize(
+    "test, expected, expect_raises",
+    [
+        # ([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]]),
+        (
+                [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+                [[0, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+                ValueError,
+        ),
+        (
+                [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+                [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+                None,
+        ),
+    ])
+def test_patient_normalise(test, expected, expect_raises):
+    """Test normalisation works for arrays of one and positive integers.
+       Assumption that test accuracy of two decimal places is sufficient."""
+    from inflammation.models import patient_normalise
+    if expect_raises is not None:
+        with pytest.raises(expect_raises):
+            npt.assert_almost_equal(patient_normalise(np.array(test)), np.array(expected), decimal=2)
+    else:
+        npt.assert_almost_equal(patient_normalise(np.array(test)), np.array(expected), decimal=2)
 
 
 def test_daily_min_string():
