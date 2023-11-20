@@ -22,9 +22,9 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: eu-west-1
 
       - name: Push to CodeCommit
         run: |
-          git remote add codecommit https://git-codecommit.${{ secrets.AWS_REGION }}.amazonaws.com/v1/repos/sarath-test-proj
+          git remote add codecommit https://git-codecommit.eu-west-1.amazonaws.com/v1/repos/sarath-test-proj
           git push codecommit --all # Change this to your default branch
