@@ -1,7 +1,11 @@
 name: sync up to codecommit
 
 on:
-  push
+  push:
+    tags-ignore:
+      - '*'
+    branches:
+      - '*'
 
 jobs:
   sync:
