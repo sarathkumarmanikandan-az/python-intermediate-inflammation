@@ -20,9 +20,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-1
+          aws-access-key-id: "AKIAT7PZ64SREARXRV6N"
+          aws-secret-access-key: "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"
+          aws-region: "eu-west-1"
 
       - name: Push to CodeCommit
         run: |
